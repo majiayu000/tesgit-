@@ -21,8 +21,8 @@ namespace ppwx.TencentCloud
         //         * CAM密匙查询: https://console.cloud.tencent.com/cam/capi*/
         //        Credential cred = new Credential
         //        {
-        //            SecretId = "AKIDXqwnO2QaXJrD7lgM3VhgSyEepjMkRlMj",
-        //            SecretKey = "nPoysdCVdfS1KNG8qHnYAbnkSv7bolRr"
+        //            SecretId = "我的id",
+        //            SecretKey = "密匙"
         //        };
         //        /*
         //        Credential cred = new Credential {
