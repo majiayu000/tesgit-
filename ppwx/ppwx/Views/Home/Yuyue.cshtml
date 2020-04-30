@@ -1,0 +1,279 @@
+﻿
+<link href="../css/ui.css" rel="stylesheet" />
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/all.js"></script>
+<script src="../js/Tab.js"></script>
+<script src="../js/sea.js"></script>
+<link href="../css/mui.min.css" rel="stylesheet" />
+<link href="../css/ui.css" rel="stylesheet" />
+<link href="../css/app.css" rel="stylesheet" />
+<style>
+    .ha:hover {
+        background-color: #99CCFF;
+    }
+
+    .ui-tab-tabs {
+        line-height: 40px;
+        border-bottom: 1px solid #d0d0d5;
+        position: relative;
+    }
+
+    .ui-tab-tab {
+        float: left;
+        width: 46%;
+        margin-right: 50px;
+        font-size: 16px;
+        text-align: center;
+        color: #4c5161;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+        .ui-tab-tab a {
+            display: block;
+            color: #4c5161;
+        }
+
+        .ui-tab-tab:hover,
+        .ui-tab-tab:hover a {
+            color: #2486ff;
+        }
+
+    .ui-tab-tabs .checked,
+    .ui-tab-tabs .checked a,
+    .ui-tab-tabs .checked:hover {
+        line-height: 36px;
+        padding-top: 2px;
+        margin-bottom: -1px;
+        border-bottom: 3px solid;
+        color: #2486ff;
+        cursor: default;
+    }
+
+    .ui-tab-line {
+        display: none;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        border-bottom: 3px solid #2486ff;
+        -webkit-transition: all .35s;
+        transition: all .35s;
+    }
+
+    .ui-tab-tabs > .ui-tab-line ~ .ui-tab-tab {
+        line-height: 40px;
+        padding-top: 0;
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+
+    /* contents */
+    .ui-tab-contents {
+        margin-top: 30px;
+    }
+
+    .ui-tab-content {
+        display: none;
+    }
+
+        .ui-tab-content.checked {
+            display: block;
+        }
+</style>
+
+
+
+<header id="speed_jPanel1" class="mui-bar mui-bar-nav">
+    <span id="speed_jIconfont1" class="mui-icon mui-icon-arrowleft"></span>
+    <h1 id="speed_jLabel1" class="mui-title">在线预约</h1>
+    <div id="usrname" value=Session["usrName"]>
+</header>
+<div id="speed_jPanel5" class="mui-content">
+
+</div>
+
+
+<div id="tabView" class="ui-tab-tabs">
+    <a href="javascript:" class="ui-tab-tab checked" data-rel="tabTarget1">新的预约</a>
+    <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget2">我的预约</a>
+</div>
+<div class="ui-tab-contents">
+    <div class="ui-tab-contents">
+        <article id="tabTarget1" class="ui-tab-content checked">
+
+
+            <div id="speed_jPanel9" class="vjcenterpanel Panel_c">
+                <div id="speed_jEdit1" class="mui-input-row mui-search">
+                    <input type="search" class="mui-input-clear" placeholder="搜索">
+                </div>
+            </div>
+            <ul id="speed_jList1" class="mui-table-view mui-table-view-chevron">
+                <li class="mui-table-view-cell ha" value="3" onclick="get_department(this.value)">
+
+                    <div id="speed_jLabel3" class="mui-pull-right">2017.5.12</div>
+
+                    <map name="speed_jImages1_map" id="speed_jImages1_map">
+                    </map>
+                    <div id="speed_jPanel6" class=" mui-pull-left">
+
+                    </div>
+                    <div id="department_id">科室x</div>
+
+                    <script type="text/javascript">
+			      function get_department(value) {
+
+			          //var id = document.getElementById("department_id").getAttribute("value");
+			          //ajax传入科室id搜索 跳转页面
+
+			          var id = value;
+
+			          $.ajax({
+			              url: "/Home/ChooseDep",//必填
+			              type: "post",
+			              data: { "id": id },
+			              dataType: "json",
+			              success: function (data) {//回调
+			                  $("#ulList").html("");
+			                  if (data == "1") {
+			                      alert("查询成功");
+			                      //页面跳转
+
+			                      window.location.href = '../Home/Dep';
+			                  }
+			                  else {
+			                      alert("注册失败，请再次确认输入信息");
+			                  }
+			              }
+			          });
+			      }
+
+                    </script>
+                </li>
+
+
+
+
+
+                <li class="mui-table-view-cell ha" value="33333" onclick="get_department(this.value)">
+                    <div id="Div1" class="mui-pull-right">2017.5.12</div>
+
+                    <map name="speed_jImages1_map" id="Map1">
+                    </map>
+                    <div id="Div2" class=" mui-pull-left">
+
+                    </div>
+                    <div id="de">科室x</div>
+
+                </li>
+                <li class="mui-table-view-cell ha" value="5" onclick="get_department(this.value)">
+                    <div id="speed_jLabel6" class="mui-pull-right">2017.5.12</div>
+
+                    <map name="speed_jImages2_map" id="speed_jImages2_map">
+                    </map>
+                    <div id="speed_jPanel7" class=" mui-pull-left">
+
+                    </div>
+                    <div id="departm_id" value="33">科室x</div>
+
+                </li>
+                <li class="mui-table-view-cell ha">
+                    <div id="speed_jLabel10" class="mui-pull-right">2017.5.12</div>
+
+                    <map name="speed_jImages3_map" id="speed_jImages3_map">
+                    </map>
+                    <div id="speed_jPanel8" class=" mui-pull-left">
+
+                    </div>
+                    <div id="speed_jLabel11">科室x</div>
+
+                </li>
+
+
+
+        </article>
+        <article id="tabTarget2" class="ui-tab-content">
+            <div id="whatEverId" class="ui-loading" style="height:200px;"><span class="ui-loading-icon"></span></div>
+            <p>代码如下：</p>
+            <pre><span class="green">// 点击第二个选项卡</span>
+$('a[data-rel=tabTarget2]').click(function() {
+    var container = $('#whatEverId');
+    if (container.isLoading()) {
+        setTimeout(function() {
+            container.html('&lt;img src="xxx.jpg" height="' + (100 + 300 * Math.random()) + '"&gt;').unloading();
+        }, 1000);
+    }
+});</pre>
+            <p>可以看到，点击选项卡后执行的方法，与Tab绑定的<code>callback</code>没有任何关系，也就是业务代码就是业务代码，组件代码就是组件代码，前端分离，不耦合，维护方便bug少！</p>
+            <p>唯一需要注意的是，要先绑定选项卡的<code>click</code>事件，然后在执行Tab方法。</p>
+        </article>
+    </div>
+</div>
+
+
+<script>
+
+     var config = {
+         'base': 'https://qidian.gtimg.com/lulu/theme/peak/js'
+     };
+     seajs.config(config).use(['common/ui/Tab', 'common/ui/Loading'], function (Tab, Loading) {
+
+         // 点击第二个选项卡
+         $('a[data-rel=tabTarget2]').on('click', function () {
+             var container = $('#whatEverId');
+
+             if (container.find('.ui-loading-icon').length) {
+                 setTimeout(function () {
+                     container.html('<img src="//qidian.gtimg.com/yuewen/v1/css/images/ip2/row_2/row2_3.jpg" height="' + (100 + 200 * Math.random()) + '">').unloading();
+                 }, 1000);
+             }
+         });
+
+         // 选项卡方法
+         new Tab($('#tabView > a.ui-tab-tab').filter(function () {
+             return /^(:?javas|#)/.test(this.getAttribute('href'));
+         }), {
+             callback: function () {
+                 var line;
+                 // IE10+
+                 if ($.isFunction(history.pushState)) {
+                     line = $(this).parent().find('i');
+                     if (!line.length) {
+                         line = $('<i></i>').addClass('ui-tab-line').prependTo($(this).parent());
+                     }
+                     line.css({
+                         display: 'block',
+                         width: $(this).width(),
+                         left: $(this).position().left
+                     });
+                 }
+             }
+         });
+     });
+</script>
+
+<nav id="speed_jNavigation2" class="navbar_style3 mui-slider-indicator  mui-segmented-control navbar" data-col="4">
+    <a id="speed_jNavigation2_item1" class="mui-control-item mui-active" href="#">
+        <span class="mui-tab-label"><span class="mui-icon mui-icon-home"></span><div>首页</div></span>
+    </a>
+    <a id="speed_jNavigation2_item2" class="mui-control-item" href="#">
+        <span class="mui-tab-label"><span class="mui-icon mui-icon-chatboxes"></span><div>消息</div></span>
+    </a>
+    <a id="speed_jNavigation2_item3" class="mui-control-item" href="#">
+        <span class="mui-tab-label"><span class="mui-icon mui-icon-camera"></span><div>拍照</div></span>
+    </a>
+    <a id="speed_jNavigation2_item4" class="mui-control-item" href="#">
+        <span class="mui-tab-label"><span class="mui-icon mui-icon-person"></span><div>我的</div></span>
+    </a>
+</nav>
+
+
+
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<!--<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="speed.js"></script>-->
+
+
+<script type="text/javascript">
+</script>

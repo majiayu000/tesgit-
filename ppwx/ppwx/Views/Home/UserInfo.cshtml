@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "个人信息";
+}
+
+@using ppwx.Models;
+
+@{
+    ViewBag.Title = "UserInfo";
+}
+
+@{
+    var user = ViewData["User"] as User;
+}
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>个人信息</title>
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/mui.min.css" />
+    <link href="../css/ui.css" rel="stylesheet" />
+
+
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <style>
+        .top_content {
+            width: 100%;
+            height: 200px;
+            background-color: #0064C8;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25pt;
+            font-weight: bold;
+            line-height: 35px;
+        }
+
+        .icon_size {
+            font-size: 50pt;
+        }
+
+        .area {
+            margin: 20px auto 0px auto;
+        }
+
+        .mui-input-group {
+            margin-top: 10px;
+        }
+
+            .mui-input-group:first-child {
+                margin-top: 20px;
+            }
+
+            .mui-input-group label {
+                width: 22%;
+            }
+
+        .mui-input-row label ~ input,
+        .mui-input-row label ~ select,
+        .mui-input-row label ~ textarea {
+            width: 78%;
+        }
+
+        .mui-content-padded {
+            margin-top: 5px;
+        }
+
+        .mui-btn {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="mui-content">
+        <div class="top_content">
+            <div>
+                <span class="icon_size mui-icon mui-icon-contact"></span>
+                <div class="mui-content-padded">信息系统</div>
+            </div>
+        </div>
+        <form id='login-form' class="mui-input-group" method="post">
+
+
+
+
+            <ul>
+                @foreach (ppwx.Models.User d in Model)
+
+                {
+
+                    <div class="mui-input-row">
+                        <label>姓名</label>
+                        <input name="account" id='txtname' type="text" class="mui-input-clear mui-input" placeholder=" @d.name" readonly>
+                    </div>
+
+
+
+                    <div class="mui-input-row">
+                        <label>性别</label>
+                        <input name="account" id='txtgender' type="text" class="mui-input-clear mui-input" placeholder="@d.sex" readonly>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="mui-input-row">
+                        <td>
+                            <label>年龄</label>
+                            <input name="account" id='txtage' type="text" class="mui-input-clear mui-input" placeholder="@d.age" readonly>
+                        </td><td>
+                            <button class="ui-button" onclick="change()" type="button">编辑资料</button>
+                        </td>
+                    </div>
+                    <div class="mui-input-row">
+                        <label>地址</label>
+                        <input name="account" id='txtaddress' type="text" class="mui-input-clear mui-input" placeholder="@d.address" readonly>
+                    </div>
+                    <div class="mui-input-row">
+                        <label>电话</label>
+                        <input name="account" id='txtnumber' type="text" class="mui-input-clear mui-input" placeholder="@d.tel" readonly>
+                    </div>
+
+                }
+            <div class="mui-content-padded">
+                <button type='button' class="mui-btn mui-btn-block mui-btn-primary" onclick="UserInformation()">确认填写</button>
+
+
+                <script src="../js/jquery-3.3.1.min.js"></script>
+
+                <script>
+                    function change() {
+                        document.getElementById("txtage").readOnly = false;
+                        document.getElementById("txtname").readOnly = false;
+                    }
+                </script>
+
+
+
+                <div class="mui-content-padded oauth-area"></div>
+
+
+
+
+                <script src="../js/jquery-3.3.1.min.js"></script>
+                <script type="text/javascript">
+
+                    UserInformation = function () {
+
+                        var name1;
+                        var gender1;
+                        var age1;
+                        var number1;
+                        var address1;
+
+                        name1 = document.getElementById("txtname").value;
+                        age1 = document.getElementById("txtage").value;
+                        gender1 = document.getElementById("txtgender").value;
+                        number1 = document.getElementById("txtnumber").value;
+                        address1 = document.getElementById("txtaddress").value;
+
+                        if ((name1 == "") || (age1 == "") || (gender1 == "") || (number1 == "") || (address1 == "")) {
+                            alert("请填写完整的信息");
+                            return false;
+                        }
+
+
+                        $.ajax({
+                            url: "/Home/UserInformation",//必填
+                            type: "post",
+                            data: { "name": name1, "sex": gender1, "tel": number1, "age": age1, "address": address1 },
+                            dataType: "json",
+                            success: function (data) {//回调
+                                $("#ulList").html("");
+                                if (data == "1") {
+                                    alert("注册成功");
+                                    //页面跳转
+                                }
+                                else {
+                                    alert("注册失败，请再次确认输入信息");
+                                }
+                            }
+
+                        });
+                    }
+                </script>
+
+
+                <button type='button' class="mui-btn mui-btn-block mui-btn-primary" onclick="Sendsms()">发送验证 测试</button>
+
+                <script type="text/javascript">
+
+                    Sendsms = function () {
+                        window.location.href = '../Home/Sendsms';
+    }
+    </script>
+
+</form >
+                    </div >
+
+</body >
+
+
+</html >

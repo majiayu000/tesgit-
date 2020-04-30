@@ -1,0 +1,186 @@
+﻿body {
+	font: normal 100% Helvetica, Arial, sans-serif;
+	margin: 5px;
+	background-color: white;
+	font-size: 1.2em;
+}
+
+.vdn-content label {}
+
+.vdn-content input {
+	font-size: 1.1em;
+	border-style: none;
+	-webkit-user-modify: read-write-plaintext-only;
+}
+
+.vdn-content select {
+	font-size: 1.1em;
+}
+
+.vdn-content .mui-input-row {
+	border-bottom-style: solid;
+	border-bottom-color: #C0C0C0;
+	border-bottom-width: 1px;
+	height: auto!important;
+}
+
+.btn-padding {
+	padding: 10px;
+}
+
+.icon {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+
+/* ========================ck-auty begin============================================ */
+
+.ck-auty-content {
+	width: 100%;
+}
+
+.ck-auty-content td {
+	width: 50%;
+	overflow: hidden;
+	padding: 2px;
+}
+
+
+/* Prevent text and blocks selection */
+
+.ck-auty.labelauty+label ::selection {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.ck-auty1.labelauty+label ::-moz-selection {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+
+/* Hide original checkboxes.They are ugly! */
+
+.ck-auty.labelauty {
+	display: none !important;
+}
+
+
+/*
+ * Let's style the input
+ * Feel free to work with it as you wish!
+ * input[type="checkbox"].labelauty+label {
+	display: table;
+ */
+
+.ck-auty.labelauty+label {
+	display: table;
+	font-size: 1em;
+	padding: 0px;
+	background-color: #efefef;
+	color: #b3b3b3;
+	cursor: pointer;
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	transition: background-color 0.25s;
+	-moz-transition: background-color 0.25s;
+	-webkit-transition: background-color 0.25s;
+	-o-transition: background-color 0.25s;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	line-height: 48px;
+	width: 100%;
+	height: 48px;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+}
+
+
+/* Stylish text inside label */
+
+.ck-auty.labelauty+label>span.labelauty-unchecked,
+.ck-auty.labelauty+label>span.labelauty-checked {
+	display: inline-block;
+	line-height: 16px;
+	vertical-align: middle;
+}
+
+
+/* When there's a label, add a little margin to the left */
+
+.ck-auty.labelauty+label>span.labelauty-unchecked-image+span.labelauty-unchecked,
+.ck-auty.labelauty+label>span.labelauty-checked-image+span.labelauty-checked {
+	margin-left: 0px;
+}
+
+
+/* When not Checked */
+
+.ck-auty.labelauty:not(:checked):not([disabled])+label:hover {
+	background-color: #eaeaea;
+	color: #a7a7a7;
+}
+
+.ck-auty.labelauty:not(:checked)+label>span.labelauty-checked-image {
+	display: none;
+}
+
+.ck-auty.labelauty:not(:checked)+label>span.labelauty-checked {
+	display: none;
+}
+
+
+/* When Checked */
+
+.ck-auty.labelauty:checked+label {
+	background-color: #3498db;
+	color: #ffffff;
+}
+
+.ck-auty.labelauty:checked:not([disabled])+label:hover {
+	background-color: #72c5fd;
+}
+
+.ck-auty.labelauty:checked+label>span.labelauty-unchecked-image {
+	display: none;
+}
+
+.ck-auty.labelauty:checked+label>span.labelauty-unchecked {
+	display: none;
+}
+
+.ck-auty.labelauty:checked+label>span.labelauty-checked {
+	display: inline-block;
+}
+
+.ck-auty.labelauty.no-label:checked+label>span.labelauty-checked {
+	display: block;
+}
+
+
+/* When Disabled */
+
+.ck-auty.labelauty[disabled]+label {
+	opacity: 0.5;
+}
+
+
+/* Add a background to (un)checked images */
+
+.ck-auty.labelauty+label>span.labelauty-unchecked-image {
+	/*background-image: url(../images/input-unchecked.png );*/
+}
+
+.ck-auty.labelauty+label>span.labelauty-checked-image {
+	/*background-image: url(../images/input-checked.png );*/
+}
+
+
+/* ==============================ck-auty  end====================================== */
+
+.mui-btn {
+	padding: 10px;
+}

@@ -1,0 +1,459 @@
+﻿
+@{
+    ViewBag.Title = "注册页";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="../Content/mui.min.css" />-->
+    <link rel="stylesheet" href="../css/ui.css" />
+    <link rel="stylesheet" href="../css/color.css" />
+
+
+
+    <!--   <script type="text/javascript" src="../Scripts/mui.min.js"></script>
+               <script type="text/javascript" src="../Scripts/jquery-2.2.3.min.js"></script>
+               <script type="text/javascript" src="../Scripts/vdn.js"></script>-->
+
+    <style>
+        .top_content {
+            width: 100%;
+            height: 200px;
+            background-color: #0064C8;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25pt;
+            font-weight: bold;
+            line-height: 35px;
+        }
+
+        .icon_size {
+            font-size: 50pt;
+        }
+
+        .area {
+            margin: 20px auto 0px auto;
+        }
+
+        .mui-input-group {
+            margin-top: 10px;
+        }
+
+            .mui-input-group:first-child {
+                margin-top: 20px;
+            }
+
+            .mui-input-group label {
+                width: 22%;
+            }
+
+        .mui-input-row label ~ input,
+        .mui-input-row label ~ select,
+        .mui-input-row label ~ textarea {
+            width: 78%;
+        }
+
+        .mui-content-padded {
+            margin-top: 5px;
+        }
+
+        .mui-btn {
+            padding: 10px;
+        }
+    </style>
+
+    <title>注册界面</title>
+</head>
+
+<body>
+
+
+    <form id='login-form' class="mui-input-group" method="post">
+
+        <style type="text/css">
+            .w2 {
+                letter-spacing: 2em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-2）/(2-1)=2em */
+                margin-right: -2em; /*同上*/
+            }
+
+            .w3 {
+                letter-spacing: 0.5em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-3）/(3-1)=0.5em */
+                margin-right: -0.5em; /*同上*/
+            }
+        </style>
+        <div class="mui-input-row">
+            <label><span class="w3">用户名</span>:</label><span id='namei' style="color:red">*</span>
+            <input class="ui-input" name="account" id='account' type="text" placeholder="请输入用户名"> <label id="msg_info" style="color:red"></label>
+        </div>
+
+        <div id="usen" style="display:none;"><font size="2" style="left: 80px; position: absolute;">	&nbsp;  6～18个字符，可使用字母、数字、下划线，需要以字母开头</font></br> </div>
+        </br>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
+		      $(function () {
+		          $("#account").click(function () {//按钮绑定点击事件
+		              $("#usen").show();//文本框显示出来  注：之前设置display:none的样式
+		          });
+		      });
+
+		      $(document).mouseup(function (e) {
+		          var pop = $('account');
+		          if (!pop.is(e.target) && pop.has(e.target).length === 0) {
+		              // 可以在这里关闭弹窗
+		              $("#usen").hide()
+		          }
+		      });
+        </script>
+
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">密码</span>:</label><span style="color:red">*</span>
+
+            <input name="password" id='password' showpassword="1" type="password" class="ui-input" placeholder="请输入密码">
+        </div>
+
+
+        <div id="pas" style="display:none;"><font size="2" style="left: 80px; position: absolute;"> 	&nbsp; 6～16个字符，区分大小写</font></br> </div>
+        </br>
+
+        <script type="text/javascript">
+
+		      $(function () {
+		          $("#password").click(function () {//按钮绑定点击事件
+		              $("#pas").show();//文本框显示出来  注：之前设置display:none的样式
+		          });
+		      });
+
+		      $(document).mouseup(function (e) {
+		          var pop = $('password');
+		          if (!pop.is(e.target) && pop.has(e.target).length === 0) {
+		              // 可以在这里关闭弹窗
+		              $("#pas").hide()
+		          }
+		      });
+        </script>
+
+        <div class="mui-input-row mui-password">
+            <label><span>确认密码</span>:</label><span style="color:red">*</span>
+
+
+            <input name="password" id='password1' showpassword="1" type="password" class="ui-input" placeholder="请再次输入密码">
+        </div><br />
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">姓名</span>:</label><span style="color:red">*</span>
+
+
+            <input name="name" id='name' class="ui-input" placeholder="请输入姓名">
+
+
+
+
+            <div id="text" style="display:none;"><font size="2" style="left: 80px; position: absolute;"> &nbsp; 姓名</font> </br/></div>
+            <script src="../js/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript">
+
+                $(function(){
+    $("#name").click(function(){//按钮绑定点击事件
+        $("#text").show();//文本框显示出来  注：之前设置display:none的样式
+    });
+                });
+
+                $(document).mouseup(function(e) {
+                    var  pop = $('name');
+                    if(!pop.is(e.target) && pop.has(e.target).length === 0) {
+                        // 可以在这里关闭弹窗
+                        $("#text").hide()
+                    }
+                });
+            </script>
+        </div></br>
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">性别</span>:</label><span style="color:red">	&nbsp; </span>
+
+            <input name="sex" id='sex' class="ui-input" placeholder="请输入性别">
+        </div></br>
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">年龄</span>:</label><span style="color:red">	&nbsp; </span>
+
+            <input name="password" id='age' class="ui-input" placeholder="请输入年龄">
+        </div></br>
+        <div class="mui-input-row mui-password">
+            <label> <span>身份证号</span>:</label><span style="color:red">*</span>
+
+            <input name="password" id='idcard' class="ui-input" placeholder="请输入身份证号">
+        </div></br>
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">地址</span>:</label><span style="color:red">*</span>
+
+            <input name="password" id='address' class="ui-input" placeholder="请输入地址">
+        </div></br>
+        <div class="mui-input-row mui-password">
+            <label> <span class="w2">电话</span>:</label><span style="color:red">*</span>
+
+
+            <input id='tel' class="ui-input" placeholder="请输入电话">
+
+
+        </div>
+
+
+        <div id="tee" style="display:none;"><font size="2" style="left: 80px; position: absolute;"> 	&nbsp;  可通过手机号找回密码</font></br> </div>
+        </br>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
+		      $(function () {
+		          $("#tel").click(function () {//按钮绑定点击事件
+		              $("#tee").show();//文本框显示出来  注：之前设置display:none的样式
+		          });
+		      });
+
+		      $(document).mouseup(function (e) {
+		          var pop = $('tel');
+		          if (!pop.is(e.target) && pop.has(e.target).length === 0) {
+		              // 可以在这里关闭弹窗
+		              $("#tee").hide()
+		          }
+		      });
+        </script>
+
+
+        <div class="mui-content-padded">
+            <label class="ui-button ui-button-primary" for="someId" role="button" onclick="RegisterInsertData()">立即注册</label></br>
+            <span class="red">星号为必填内容</span>
+
+            <script src="../js/jquery-3.3.1.min.js"></script>
+            <script src="../js/Dialog.js"></script>
+            <script src="../js/all.js"></script>
+            <script type="text/javascript">
+		      function testsk() {
+		          window.location.href = '../Home/login';
+		      }
+
+		      function RegisterInsertData() {
+		          var name = document.getElementById("account").value;
+		          var pass1 = document.getElementById("password").value;
+		          var pass2 = document.getElementById("password1").value;
+		          var na = document.getElementById("name").value;
+		          var sex = document.getElementById("sex").value;
+		          var age = document.getElementById("age").value;
+		          var idcard = document.getElementById("idcard").value;
+		          var address = document.getElementById("address").value;
+		          var tel = document.getElementById("tel").value;
+
+
+
+		          if (name == "") {
+		              new Dialog().alert('请输入用户名！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (pass1 == "") {
+		              new Dialog().alert('请输入密码！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (pass2 == "") {
+		              new Dialog().alert('请再次输入密码！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (pass1 != pass2) {
+		              new Dialog().alert('两次输入的密码不一致！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (na == "") {
+		              new Dialog().alert('请输入姓名！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+
+		          if (idcard == "") {
+		              new Dialog().alert('身份证号！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (address == "") {
+		              new Dialog().alert('请输入地址！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          if (tel == "") {
+		              new Dialog().alert('请输入电话！', {
+		                  title: '系统提醒'
+		              });
+		              return false;
+		          }
+		          $.ajax({
+		              url: "/Home/RegisterCheckName",//必填
+		              type: "post",
+		              data: { "usename": name},
+		              dataType: "json",
+		              success: function (data) {//回调
+		                  $("#ulList").html("");
+		                  if (data == "1") {
+
+		                      document.getElementById("msg_info").innerHTML = '用户名已存在';
+		                      $("#namei").hide()
+
+		                      //此处需要修改
+
+		                      return false;
+		                  }
+		                  else {
+
+		                      $.ajax({
+		                          url: "/Home/RegisterInsertData",//必填
+		                          type: "post",
+		                          data: { "usename": name, "pass": pass1, "name": na, "sex": sex, "age": age, "idcard": idcard, "address": address, "tel": tel },
+		                          dataType: "json",
+		                          success: function (data) {//回调
+		                              $("#ulList").html("");
+		                              if (data == "1") {
+		                                  alert("注册成功");
+		                                  //页面跳转
+
+		                                  window.location.href = '../Home/login';
+		                              }
+		                              else {
+		                                  alert("注册失败，请再次确认输入信息");
+		                              }
+		                          }
+		                      });
+
+		                  }
+		              }
+		          });
+
+
+
+
+
+
+		      }
+
+            </script>
+
+        </div>
+        <div class="mui-content-padded oauth-area"></div>
+
+
+
+
+
+
+    </form>
+    <!--		<div style="left: 600px; position: absolute; font-family:微软雅黑;top: 200px;font-size:15px">用户名:</div>
+
+
+
+            <div style="left: 600px; position: absolute; font-family:微软雅黑;top: 250px;font-size:15px">密码:</div>
+
+
+
+            <div style="left: 600px; position: absolute; font-family:微软雅黑;top: 300px;font-size:15px">确认密码:</div>
+
+            <div style="left: 600px; position: absolute; font-family:微软雅黑;top: 350px;font-size:15px">电话:</div>
+
+
+
+
+
+
+        <div style="left :680px; position: absolute;top: 200px">
+
+        <input type="text" id="txtname" name="用户名">
+
+        </div>
+
+        <div style="left :680px; position: absolute;top: 250px">
+
+        <input type="text" id="passwd" name="密码">
+
+        </div>
+
+        <div style="left :680px; position: absolute;top: 300px">
+
+        <input type="text" id="passwd2" name="确认密码">
+
+        </div>
+
+
+         <div style="left :680px; position: absolute;top: 350px">
+
+        <input type="text" id="tel" name="电话">
+
+        </div>
+
+
+
+        <div style="left :720px; position: absolute;top: 500px">
+
+        <!--<input type="submit" value="注册" name="注册" onclick="skip1()" />-->
+    <!--<script>
+        function skip1() {
+            window.location.href = '../Home/Index';
+        }
+     </script>-->
+    <!--	<script>
+
+            function setdata() {
+
+                var u1;
+                var u2;
+                var u3;
+
+
+
+                var name1;
+                var passwd1;
+                var passwd2;
+
+
+                name1 = document.getElementById("txtname").value;
+                passwd1 = document.getElementById("txtage").value;
+                passwd2 = document.getElementById("txtgender").value;
+
+
+
+
+                localStorage.setItem('m.UserName', name1);
+                localStorage.setItem('m.Password', passwd1);
+                localStorage.setItem(' m.ConfirmPassword', passwd2);
+
+
+
+
+
+            }
+
+
+        </script>-->
+    我已阅读并同意相关服务条款和隐私政策</label>&nbsp;
+    <img src="https://cdn-go.cn/qq-web/zc.qq.com/12ea5880/v3/img/up.png" data-bind="click: switchAgreement, visible: agreementOpened()">
+    <img src="https://cdn-go.cn/qq-web/zc.qq.com/12ea5880/v3/img/down.png" data-bind="    click: switchAgreement, visible: !agreementOpened()">
+    <div class="agreement-list" data-bind="    style: { visibility: agreementOpened() ? 'visible' : 'hidden', opacity: agreementOpened() ? '1' : '0' }">
+        <a href="/chs/agreement1_chs.html" target="_blank">《规则》</a>
+        <a href="http://www.qq.com/privacy.htm" target="_blank">《规则1》</a>
+        <a href="http://qzone.qq.com/web/tk.html" data-bind="    style: { visibility: qzone() && agreementOpened() ? 'visible' : 'hidden' }" target="_blank">《规则2》</a>
+    </div></div></form>
+</body>
+
+
+</html>
+
+

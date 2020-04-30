@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "ensure";
+}
+
+<link href="../css/ui.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<h2>确认预约</h2>
+
+
+
+
+
+
+
+
+
+<ui>
+    医院：xxxx医院
+</ui></br>
+<ui>
+    @("科室："+Session["id"])
+</ui></br>
+
+<ui>
+    @("医生："+Session["docname"])
+</ui></br>
+<ui>
+    @("就诊时间："+Session["yytime"])
+</ui></br>
+<ui>
+
+</ui></br>
+
+
+<label class="ui-button ui-button-primary" for="someId" role="button" onclick="RegisterInsertData()">确认挂号</label>

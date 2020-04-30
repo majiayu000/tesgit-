@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!VDNDOC "pageBase":"nvo_login","IniEvent":"PageIni","ResetSession":true,"NotValidLogin":true,"ServerValueList":"all">
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>挂号系统</title>
+    <link rel="stylesheet" href="../css/mui.min.css" />
+
+
+    <script type="text/javascript" src="../Scripts/mui.min.js"></script>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/vdn.js"></script>
+
+    <style>
+        .top_content {
+            width: 100%;
+            height: 200px;
+            background-color: #0064C8;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25pt;
+            font-weight: bold;
+            line-height: 35px;
+        }
+
+        .icon_size {
+            font-size: 50pt;
+        }
+
+        .area {
+            margin: 20px auto 0px auto;
+        }
+
+        .mui-input-group {
+            margin-top: 10px;
+        }
+
+            .mui-input-group:first-child {
+                margin-top: 20px;
+            }
+
+            .mui-input-group label {
+                width: 22%;
+            }
+
+        .mui-input-row label ~ input,
+        .mui-input-row label ~ select,
+        .mui-input-row label ~ textarea {
+            width: 78%;
+        }
+
+        .mui-content-padded {
+            margin-top: 5px;
+        }
+
+        .mui-btn {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--
+            <header class="mui-bar mui-bar-nav">
+            <h1 class="mui-title">登录</h1>
+        </header>
+        -->
+    <div class="mui-content">
+        <div class="top_content">
+            <div>
+
+                <image src="../image/g.png" />
+                <div class="mui-content-padded">挂号系统</div>
+            </div>
+        </div>
+        <form id='login-form' class="mui-input-group" method="post">
+            <div class="mui-input-row">
+                <label>用户名</label>
+                <input name="account" id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号" />
+            </div>
+            <div class="mui-input-row mui-password">
+                <label>密码</label>
+
+                <input name="password" id='password' showpassword="1" type="password" class="mui-input-clear mui-input mui-input-password" placeholder="请输入密码" />
+            </div>
+            <div class="mui-content-padded">
+                <button type="button" class="mui-btn mui-btn-block mui-btn-primary" onclick="LoginIn()">登录</button>
+                <a name='wx_login' href="../Home/MainPage" class="mui-btn mui-btn-block mui-btn-primary">测试入口</a>
+                <a name='wx_reg' onclick="skip()" class="mui-btn mui-btn-block mui-btn-primary">注册</a>
+
+
+                <script src="../js/jquery-3.3.1.min.js"></script>
+                <script type="text/javascript">
+
+                    function LoginIn() {
+
+
+
+                        var name = document.getElementById("account").value;
+                        var pass = document.getElementById("password").value;
+
+
+                        if ((name == "") || (pass == "")) {
+                            alert("请填写完整的信息");
+                            return false;
+                        }
+
+                        $.ajax({
+                            url: "/Home/LoginIn",//必填
+                            type: "post",
+                            data: { "name": name, "pass": pass },
+                            dataType: "json",
+                            success: function (data) {//回调
+                                $("#ulList").html("");
+                                if (data == "1") {
+                                    alert("登录成功");
+                                    //页面跳转
+                                    window.location.href = '../Home/MainPage';
+                                }
+                                else {
+                                    alert("登录失败，请再次确认输入信息");
+                                }
+                            }
+
+                        });
+                    }
+                </script>
+                <script>
+                    function skip() {
+                        window.location.href = '../Home/Register';
+                    }
+                </script>
+            </div>
+            <div class="mui-content-padded oauth-area"></div>
+
+
+
+            <!--<script type="text/javascript">
+                $(function () {
+                    //取消回车自动提交
+                    $('input:text:first').focus();
+                    var $inp = $('input');
+                    $inp.bind('keydown', function (e) {
+                        var key = e.which;
+                        if (key == 13) {
+                            if (e.target.type == "text") {
+                                e.preventDefault();
+                                var nxtIdx = $inp.index(this) + 1;
+                                $(":input:eq(" + nxtIdx + ")").focus();
+                            }
+                        }
+                    });
+                });
+
+            </script>-->
+        </form>
+    </div>
+</body>
+
+</html>
+
