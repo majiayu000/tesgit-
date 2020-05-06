@@ -1,0 +1,71 @@
+﻿@using ppwx.Models;
+
+@{
+    ViewBag.Title = "按医生挂号";
+}
+@{
+    var doctor = ViewData["Doctor"] as Doctor;
+}
+<style>
+    .ha:hover {
+        background-color: #99CCFF;
+    }
+</style>
+<script src="../js/jquery-3.3.1.min.js"></script>
+
+<h2>按医生挂号</h2>
+
+<ul>
+    @foreach (ppwx.Models.Doctor d in Model)
+
+    {
+        <li class="ha" value="@d.doc_name" onclick="get_doc(this.value)">
+
+            <img src="../image/doc.png">
+            <h> @d.doc_name </h>
+            @*<td> @d.职位 </td>*@
+            @*<td> @d.简介 </td>*@
+        <li>@Html.ActionLink(d.id, "Browse", 5)</li>
+
+
+        <td> @d.dept_id </td>
+        <br> </br>
+
+        @*<td> @d.时间1 </td>*@
+        @*<td> @d.时间2 </td>*@
+        @*<td> @d.时间3 </td>*@
+        </li>
+
+
+        <script type="text/javascript">
+             function get_doc(value) {
+
+                 var name = value;
+
+                 $.ajax({
+                     url: "/Yuyue/redoc",//必填
+                     type: "post",
+                     data: { "name": name },
+                     dataType: "json",
+                     success: function (data) {//回调
+                         $("#ulList").html("");
+                         if (data != "") {
+                             alert("查询成功");
+                             //页面跳转
+
+                             window.location.href = '../Yuyue/Bydate';
+                         }
+                         else {
+                             alert("注册失败，请再次确认输入信息");
+                         }
+                     }
+                 });
+
+
+			      }
+
+        </script>
+
+
+    }
+</ul>

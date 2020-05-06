@@ -1,0 +1,366 @@
+﻿/*公用全局样式*/
+* {margin:0; padding:0;}
+img {border:0px none;vertical-align:top;}
+ul li {list-style:none;vertical-align:middle;display:block;}
+a{ text-decoration:none;outline-style:none;}
+a:hover{ text-decoration:none;}
+body{font-family:'Microsoft YaHei',微软雅黑,sans-serif;font-size:.22rem;color:#333;background:#FAFAFA}
+button,input,optgroup,select,textarea:focus { outline: none; }
+.clearfix::before {
+    content: "020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+.list-common{
+    width:100%;
+    padding:0 0.34rem;
+    box-sizing: border-box;
+}
+.font1{font-size: 0.18rem;}
+.font2{font-size: 0.2rem;}
+.font3{font-size: 0.22rem;}
+.font4{font-size: 0.24rem;}
+.font5{font-size: 0.26rem;}
+.font6{font-size: 0.28rem;}
+.font7{font-size: 0.3rem;}
+
+.color-3{color:#333;}
+.color-6{color:#666;}
+.color-9{color: #999;}
+.color-blue{color: #0fc7d3!important;}
+.color-red{color: #EB6D57!important;}
+.color-white{color: #fafafa;}
+.color-white2{color:#fff;}
+.color-gary {color: #E2E7E8;}
+.color-green {color: #1AC990;}
+
+/*首页图标灰度*/
+.gray {filter: grayscale(100%);-webkit-filter: grayscale(100%);}
+
+.icon {width: 1.5em; height: 1.5em;vertical-align: -0.4em;fill: currentColor;overflow: hidden;}
+
+.bg-color1{background:#0FC7D3;  /*蓝色*/}
+.bg-color2{background:#F4F6F8;  /*灰色*/}
+.bg-color3{background:#1AC990;  /*绿色*/}
+.bg-color4{background:#FAFAFA;  /*浅白*/}
+.bg-color5{background:#ED6C56;  /*红色*/}
+.bg-color6{background:#F29C9F;  /*粉色*/}
+.bg-color7{background:#F9C357;  /*黄色*/}
+.bg-color8{background:#7DCB54;  /*亮绿色*/}
+.green-color{color:#57c957;  /*亮绿色*/}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:#cacaca;
+}
+input:-moz-placeholder ,
+textarea::-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+    color: #cacaca;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#cacaca;
+}
+input:-ms-input-placeholder,
+textarea::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cacaca;
+}
+
+/* 暂无数据 */
+.global-no-data {
+    width: 100%;
+    display: none;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+.global-no-data .data-img svg {
+    font-size: 0.5rem;
+}
+.global-no-data p {
+    width: 100%;
+    height: auto;
+    margin-top: 0.2rem;
+}
+
+/* 回到首页 */
+.goBackHome{
+    padding: 0 0.3rem 0.5rem 0.3rem;
+}
+.goBackHome span{
+    width: 100%;
+    display: block;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    background: #fff;
+    text-align: center;
+    color: #333;
+    border-radius: 0.4rem;
+    margin-top: 0.4rem;
+    border: 1px solid #dfe1e2;
+}
+.mui-backdrop{
+    background-color: rgba(51, 51, 51, .5);
+}
+
+/* 公共顶部提示 */
+.top_propmt_public {
+    width: 100%;
+    position: fixed;
+    line-height: 0.4rem;
+    padding: 0.2rem 0.3rem;
+    text-align: center;
+    color: #fff;
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: 0.5s;
+}
+/* 圆角蓝色整行按钮 */
+.primary_button_block{
+    text-align: center;
+    height: 0.8rem;
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+    border-radius: 0.4rem;
+    color: #fff;
+    background: #0FC7D3;
+}
+
+/* 圆角白色整行按钮 */
+.white_button_block{
+    text-align: center;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    border-radius: 0.4rem;
+    color: #333333;
+    margin-bottom: 0.3rem;
+    font-size: 0.3rem;
+    background: #fff;
+    border: 1px solid #cecece;
+}
+
+/* 右侧小三角 */
+.select_arrow_public{
+    position: relative;
+}
+.select_arrow_public::after{
+    content: "";
+    display: inline-block;
+    width: 0.12rem;
+    height: 0.12rem;
+    border-bottom: 1px solid#aaaaaa;
+    border-right: 1px solid #aaaaaa;
+    position: absolute;
+    right: 0.05rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+}
+
+/* 全局end样式 */
+.public_cont_end{
+    text-align: center;
+    color: #bbb;
+    padding: 0.1rem 0;
+}
+
+/* 20181114公共头部添加切换就诊人/切换院区 */
+.public_add_person{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 25;
+}
+.gloabal_common_top,
+.gloabal_common_top_anyKind{
+    width:100%;
+    overflow: hidden;
+    line-height: 0.6rem;
+    padding: 0.1rem 0;
+    background: #fff;
+    margin-bottom: 0.1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.gloabal_common_top li{
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+.gloabal_common_top .hospital_name{
+    flex:2.6;
+    -webkit-flex:2.6;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+    border-right:1px solid #dfe2e3;
+}
+.gloabal_common_top .hospital_name font{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.gloabal_common_top .paients_orderName{
+    flex:1;
+    -webkit-flex: 1;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+}
+
+.gloabal_common_top li span{
+    width: 0;
+    height: 0;
+    border-left: 0.08rem solid transparent;
+    border-right: 0.08rem  solid transparent;
+    border-top: 0.08rem  solid #0fc7d3;
+    align-self: center;
+    margin-left: 0.1rem;
+}
+
+/* 切换院区样式弹出层样式 */
+.global_chnages_hospital {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    left: 0;top: 100%;
+    transition: 0.5s;
+    z-index: 999;
+    background:#eeeeee;
+}
+.global_chnages_hospital ul {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    max-height:4.06rem;
+    box-sizing:border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-top: 1px solid #DFE2E3;
+    margin-bottom: 0.1rem;
+}
+.global_chnages_hospital ul li {
+    width: 100%;
+    height: 0.81rem;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom:1px solid #DFE2E3;
+    line-height: 0.8rem;
+}
+.global_chnages_hospital ul li.active{
+    color:#0fc7d3;
+}
+.global_chnages_hospital p {
+    background: #fff;
+    margin-bottom: 0;
+    width: 100%;
+    height: 0.81rem;
+    box-sizing: border-box;
+    border-top: 1px solid #DFE2E3;
+    line-height: 0.8rem;
+    text-align: center;
+}
+
+/* 禁止页面弹出层下面内容滚动公共样式 */
+.prompt_disabled_wrapper.pageFixed{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+/*20181114 页面底部操作按钮*/
+.page_end_btn{
+    display: flex;
+    display: -webkit-flex;
+    padding: 0 0.3rem;
+    box-sizing: border-box;
+    margin-top:0.3rem;
+}
+.page_end_btn span{
+    flex: 1;
+    -webkit-flex: 1;
+}
+.m-30{
+    margin-right:0.3rem;
+}
+.ml-30{
+    margin-left:0.3rem;
+}
+
+.choice_room_add_person {
+    background: #fff;
+    text-align: center;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+.choice_room_add_person.add_person_top_tips {
+    position: relative;
+    z-index: 1000;
+}
+
+/*只有添加就诊人/切换就诊人/切换院区其中一种的样式 */
+.gloabal_common_top_anyKind .change_paient_top {
+    text-align: center;
+    padding:0 0.3rem;
+    font-size: 0.24rem;
+    background: #fff;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    position: relative;
+}
+.gloabal_common_top_anyKind .change_paient_top >div {
+    position: relative;
+}
+.gloabal_common_top_anyKind .change_paient_top >font{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    -webkit-flex: 1;
+    margin-right: 0.2rem;
+}
+.gloabal_common_top_anyKind .change_paient_top>div span {
+    margin-right: 0.2rem;
+}
+.gloabal_common_top_anyKind .change_paient_top>div::after {
+    content: "";
+    width: 0.1rem;
+    height: 0.1rem;
+    border-top: 1px solid #0fc7d3;
+    border-right: 1px solid #0fc7d3;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(45deg);
+    -webkit-transform: translateY(-50%) rotate(45deg);
+}
+
+.gloabal_common_top_anyKind .change_paient_top span {
+    margin-right: 0.2rem;
+}

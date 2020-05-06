@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "修改密码";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>个人信息</title>
+
+    <link href="../css/ui.css" rel="stylesheet" />
+    <link href="../css/Button.css" rel="stylesheet" />
+    <link href="../css/Dialog.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/mui.min.css" />
+    <link rel="stylesheet" href="../css/color.css" />
+
+
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/all.js"></script>
+    <script src="../js/Dialog.js"></script>
+
+
+    <style>
+        .top_content {
+            width: 100%;
+            height: 200px;
+            background-color: #0064C8;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25pt;
+            font-weight: bold;
+            line-height: 35px;
+        }
+
+        .icon_size {
+            font-size: 50pt;
+        }
+
+        .area {
+            margin: 20px auto 0px auto;
+        }
+
+        .mui-input-group {
+            margin-top: 10px;
+        }
+
+            .mui-input-group:first-child {
+                margin-top: 20px;
+            }
+
+            .mui-input-group label {
+                width: 22%;
+            }
+
+        .mui-input-row label ~ input,
+        .mui-input-row label ~ select,
+        .mui-input-row label ~ textarea {
+            width: 78%;
+        }
+
+        .mui-content-padded {
+            margin-top: 5px;
+        }
+
+        .mui-btn {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="mui-content">
+        <div class="top_content">
+            <div>
+                <span class="icon_size mui-icon mui-icon-contact"></span>
+                <div class="mui-content-padded">重置密码</div>
+            </div>
+        </div>
+
+        <p>
+            <font size="4">  @("账号：" + Session["usrName"] )</font>
+
+        </p>
+
+        <button class="ui-button u1" data-type="primary" width="100%">通过当前密码修改</button>
+
+
+
+        <form id='change-form' class="mui-input-group form1" method="post" style="display:none">
+            <div class="mui-input-row">
+                <label>当前密码</label>
+                <input name="nowpassword" id='nowpassword' type="text" class="ui-input" placeholder="请输入当前密码" />
+            </div>
+            <div class="mui-input-row mui-password">
+                <label>新的密码</label>
+                <input name="newpassword" id='newpassword' showpassword="1" type="password" class="ui-input" width="100%" placeholder="请输入新密码" />
+            </div>
+            <div class="mui-input-row mui-password">
+                <label>确认密码</label>
+                <input name="newpassword" id='newpassword1' showpassword="1" type="password" class="ui-input" placeholder="请再次输入新密码">
+            </div>
+
+
+            <button type="button" class="ui-button" data-type="primary" width="100%" onclick="ChangePassword()">确认修改</button>
+
+        </form>
+
+
+        <script src="../js/Dialog.js"></script>
+        <script src="../js/all.js"></script>
+
+
+        <script type="text/javascript">
+            $(function () {
+                        $("button.u1").click(function () {//按钮绑定点击事件
+                            if (document.getElementsByClassName("form1")[0].style.display == "none") {
+                                $("form.form1").hide();
+                               //先全部关掉
+                                $("form.form1").show();//文本框显示出来  注：之前设置display:none的样式
+
+                            }
+                            else {
+                                $("form.form1").hide();
+
+
+                            }
+
+                        });
+            });
+
+            function ChangePassword() {
+                var pass = document.getElementById("nowpassword").value;
+                var pass1 = document.getElementById("newpassword").value;
+                var pass2 = document.getElementById("newpassword1").value;
+
+                if (pass == "") {
+                    new Dialog().alert('请输入当前密码', {
+                        title: '系统提醒'
+                    });
+                    return false;
+                }
+                if (pass1 == "") {
+                    new Dialog().alert('请输入要修改的密码',{
+                        title: '系统提醒'
+                    });
+                    return false;
+                }
+                if (pass2 =="") {
+                    new Dialog().alert('请输入确认密码', {
+                    title: '系统提醒'
+                });
+                return false;
+                }
+
+                if (pass1 != pass2) {
+                new Dialog().alert('两次输入的密码不一致！', {
+                title: '系统提醒'
+                   });
+                return false;
+                }
+
+                $.ajax({
+                    url: "/Home/ChangePassword",//必填
+                    type: "post",
+                    data: { "pass": pass, "pass1": pass1 },
+                    dataType: "json",
+                    success: function (data) {//回调
+                        $("#ulList").html("");
+                        if (data == "1") {
+                            alert("修改成功");
+                            //页面跳转
+
+                            window.location.href = '../Home/login';
+                        }
+                        else if (data == "2")
+                        {
+                            new Dialog().alert('登录信息已失效，请重新登陆！', {
+                                title: '系统提醒'
+                            })}
+                        else {
+                            new Dialog().alert('请输入正确的当前密码', {
+                                title: '系统提醒'
+                            })
+                        }
+                    }
+
+                });
+            }
+
+        </script>
+
+
+        <button class="ui-button" data-type="primary" width="100%" oncilck="ChangeByPass()">通过手机号修改</button>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

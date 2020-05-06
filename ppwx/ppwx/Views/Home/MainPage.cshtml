@@ -1,0 +1,236 @@
+﻿@if (Session["usrName"] != null)
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        //此处缺乏一个判断  如果session为null  跳回index
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("你好，" + Session["usrName"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+            </li>
+
+        </ul>
+
+    };
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("请先登录！", "index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @*<li>cookies:@Session["usrName"];</li>  注释格式*@
+    </ul>
+
+}
+
+
+
+
+
+<!VDNDOC "PageBase":"nvo_main","IniEvent":"PageIni">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>挂号app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <style>
+        .mui-slider-indicator {
+            bottom: 0;
+        }
+
+        .mui-slider {
+            background-color: #f2f2f2;
+        }
+
+        .icon-size {
+            max-height: 48px;
+            max-width: 48px;
+            width: 48px;
+            height: 48px;
+        }
+
+        .mui-media-body1 {
+            word-wrap: break-all !important;
+            white-space: normal !important;
+            height: 30px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slider-1" class="mui-slider">
+        <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="../image/two.jpg">
+                </a>
+            </div>
+            <!-- 第一张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="../image/one.jpg">
+                </a>
+            </div>
+            <!-- 第二张 -->
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="../image/two.jpg">
+                </a>
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="../image/one.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="mui-slider-indicator">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+        </div>
+    </div>
+    <div class="mui-content">
+        <div id="Gallery" class="mui-slider" style="margin-top:15px;">
+            <div class="mui-slider-group">
+                <div class="mui-slider-item">
+                    <ul class="mui-table-view mui-grid-view mui-grid-9">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/Yuyue">
+                                <span class="mui-icon mui-icon-personadd"></span>
+                                <div class="mui-media-body">在线预约</div>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/list">
+                                <span class="mui-icon mui-icon-person"><span id="span_count" class="mui-badge">0</span></span>
+                                <div class="mui-media-body">我的预约</div>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/pay">
+                                <span class="mui-icon mui-icon mui-icon-paperplane"></span>
+                                <div class="mui-media-body">缴费</div>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/UserInfo">
+                                <span class="mui-icon mui-icon-chatboxes"></span>
+                                <div class="mui-media-body">个人信息</div>
+                            </a>
+
+
+
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/Chart">
+                                <span class="mui-icon mui-icon-list"></span>
+                                <div class="mui-media-body">病历</div>
+                            </a>
+                        </li>
+
+
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a href="../Home/Change">
+                                <span class="mui-icon mui-icon-compose"></span>
+                                <div class="mui-media-body">修改密码</div>
+                            </a>
+                        </li>
+
+                        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                            <a name="a_exit" href="logout">
+                                <span class="mui-icon mui-icon-redo"></span>
+                                <div name="div_exit" class="mui-media-body">注销</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--div class="mui-slider-indicator">
+                    <div class="mui-indicator mui-active"></div>
+                    <div class="mui-indicator"></div>
+                    <div class="mui-indicator"></div>
+                </div-->
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/vdn.js"></script>
+<script src="../js/mui.min.js"></script>
+<script>
+	    mui.init();
+	    vdn.disableBack();
+	    mui.ready(function () {
+	        var slider = document.getElementById('Gallery');
+	        var group = slider.querySelector('.mui-slider-group');
+	        var items = mui('.mui-slider-item', group);
+	        //克隆第一个节点
+	        var first = items[0].cloneNode(true);
+	        first.classList.add('mui-slider-item-duplicate');
+	        //克隆最后一个节点
+	        var last = items[items.length - 1].cloneNode(true);
+	        last.classList.add('mui-slider-item-duplicate');
+	        //处理是否循环逻辑，若支持循环，需支持两点：
+	        //1、在.mui-slider-group节点上增加.mui-slider-loop类
+	        //2、重复增加2个循环节点，图片顺序变为：N、1、2...N、1
+	        var sliderApi = mui(slider).slider();
+
+	        function toggleLoop(loop) {
+	            if (loop) {
+	                group.classList.add('mui-slider-loop');
+	                group.insertBefore(last, group.firstChild);
+	                group.appendChild(first);
+	                sliderApi.refresh();
+	                sliderApi.gotoItem(0);
+	            } else {
+	                group.classList.remove('mui-slider-loop');
+	                group.removeChild(first);
+	                group.removeChild(last);
+	                sliderApi.refresh();
+	                sliderApi.gotoItem(0);
+	            }
+	        }
+	        //获取预约数量  待修改
+	        vdn.post({
+	            "method": "nvo_bill.GetListCount",
+	            "params": []
+	        }, function (data) {
+	            mui("#span_count")[0].innerHTML = data.Result;
+	        },
+				function (err) {
+				    mui.toast(err.Message + "(" + err.Code.toString() + ")");
+				});
+
+	    });
+        //注销
+
+                    function logout() {
+                        window.location.href = '../Home/logout';
+
+                    }
+
+
+	    //取消绑定  也许会用到
+	    //function logout() {
+	    //    if (confirm("确定取消微信绑定?")) {
+	    //        //取消绑定
+	    //        vdn.post({
+	    //            "method": "nvo_main.logout",
+	    //            "params": []
+	    //        }, function (data) {
+	    //            $(location).prop('href', data.Result);
+	    //        },
+		//			function (err) {
+		//			    mui.toast(err.Message + "(" + err.Code.toString() + ")");
+		//			});
+	    //    }
+	    //}
+</script>
+
+</html>

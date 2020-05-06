@@ -1,0 +1,713 @@
+﻿@model IEnumerable<ppwx.Models.Doctor>
+
+@{
+    ViewBag.Title = "Bydate";
+}
+
+<style>
+    .bt1 {
+        line-height: 0.8;
+    }
+
+    .bt2 {
+        line-height: 0.8;
+    }
+
+    .bt3 {
+        line-height: 0.8;
+    }
+
+    .bt4 {
+        line-height: 0.8;
+    }
+
+    .ui-button {
+        display: inline-block;
+        line-height: 20px;
+        font-size: 14px;
+        text-align: center;
+        color: #4c5161;
+        border-radius: 4px;
+        border: 1px solid #d0d0d5;
+        padding: 9px 15px;
+        min-width: 80px;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        text-decoration: none;
+        box-sizing: border-box;
+        transition: border-color .15s, box-shadow .15s, opacity .15s;
+        font-family: inherit;
+        cursor: pointer;
+        overflow: visible;
+    }
+
+        .ui-button[width="100%"] {
+            width: 100%;
+        }
+
+    div.ui-button {
+        display: block;
+    }
+
+    [type="submit"]:not([class]) {
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+
+
+    ::-moz-focus-inner {
+        border: 0;
+    }
+
+    input.ui-button,
+    button.ui-button {
+        height: 40px;
+    }
+
+    .ui-button:hover {
+        color: #4c5161;
+        text-decoration: none;
+    }
+
+    .ui-button:not(.disabled):not(.loading):not(:disabled):hover {
+        border-color: #ababaf;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.01), inset 0 0 0 100px rgba(0,0,0,.05);
+    }
+
+    .ui-button:not(.disabled):not(.loading):not(:disabled):active {
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 100px rgba(0,0,0,.1);
+    }
+
+    .ui-button[data-type="primary"],
+    .ui-button[data-type="remind"],
+    .ui-button[data-type="success"],
+    .ui-button[data-type="warning"],
+    .ui-button[data-type="warn"],
+    .ui-button[data-type="danger"],
+    .ui-button[data-type="error"] {
+        border: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #fff;
+    }
+
+    /* primary button */
+    .ui-button[data-type="primary"],
+    .ui-button[data-type="remind"] {
+        background-color: #2a80eb;
+    }
+
+    /* success button */
+    .ui-button[data-type="success"] {
+        background-color: #1cad70;
+    }
+
+    /* warning button */
+    .ui-button[data-type="warning"],
+    .ui-button[data-type="warn"] {
+        background-color: #f59b00;
+    }
+    /* danger button */
+    .ui-button[data-type="danger"],
+    .ui-button[data-type="error"] {
+        background-color: #eb4646;
+    }
+
+    /* disabled status */
+    .ui-button.disabled,
+    .ui-button:disabled {
+        opacity: .4;
+        cursor: default;
+    }
+    /* loading status */
+    .ui-button.loading {
+        color: transparent !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        cursor: default;
+    }
+        /* for IE9 button按钮以及IE9+ input按钮，三个点 */
+        input.ui-button.loading,
+        .ui-button.loading::before {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%232a80eb'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%232a80eb'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%232a80eb'/%3E%3C/svg%3E");
+            background-position-x: calc(50% - 10px), 50%, calc(50% + 10px);
+            /* IE不支持calc计算动画，因此是要具体数值代替 */
+            background-position-y: 18px, 18px, 18px;
+            background-size: 5px 5px;
+            animation: bubbling 1s infinite;
+        }
+
+    input.ui-button[data-type]:not([data-type="normal"]).loading,
+    .ui-button[data-type]:not([data-type="normal"]).loading::before {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%23fff'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%23fff'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    /* IE9+ */
+    .ui-button.loading::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+    }
+    /* IE10+，:invalid伪类IE10+才支持 */
+    .ui-button.loading::before,
+    div:invalid {
+        width: 20px;
+        height: 20px;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M512 1024q-104 0-199-40-92-39-163-110T40 711Q0 616 0 512q0-15 10.5-25.5T36 476t25.5 10.5T72 512q0 90 35 171 33 79 94 140t140 95q81 34 171 34t171-35q79-33 140-94t95-140q34-81 34-171t-35-171q-33-79-94-140t-140-95q-81-34-171-34-15 0-25.5-10.5T476 36t10.5-25.5T512 0q104 0 199 40 92 39 163 110t110 163q40 95 40 199t-40 199q-39 92-110 163T711 984q-95 40-199 40z' fill='%232a80eb'/%3E%3C/svg%3E") no-repeat center;
+        background-size: 20px 20px;
+        margin: auto;
+        animation: spin 1s linear infinite;
+    }
+    /* IE10+ */
+    .ui-button[data-type]:not([data-type="normal"]).loading::before,
+    div:invalid {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M512 1024q-104 0-199-40-92-39-163-110T40 711Q0 616 0 512q0-15 10.5-25.5T36 476t25.5 10.5T72 512q0 90 35 171 33 79 94 140t140 95q81 34 171 34t171-35q79-33 140-94t95-140q34-81 34-171t-35-171q-33-79-94-140t-140-95q-81-34-171-34-15 0-25.5-10.5T476 36t10.5-25.5T512 0q104 0 199 40 92 39 163 110t110 163q40 95 40 199t-40 199q-39 92-110 163T711 984q-95 40-199 40z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+</style>
+
+<html ng-app="myApp" ng-controller="palm" style="font-size: 100.421px;" class="ng-scope">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+
+<h2>按日期预约</h2>
+<link href="../css/Button.css" rel="stylesheet" />
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<script src="../js/all.js"></script>
+<link href="../css/ui.css" rel="stylesheet" />
+@*<script src="../js/angular-messages.min.js"></script>*@
+<link href="../css/fffont.css" rel="stylesheet" />
+
+@*<script src="../js/mui.picker.min.js"></script>*@
+<link href="../css/index.css" rel="stylesheet" />
+@*<link href="../css/mui.picker.min.css" rel="stylesheet" />*@
+<link href="../css/swiper.css" rel="stylesheet" />
+<link href="../css/public.css" rel="stylesheet" />
+<link href="../css/timec.css" rel="stylesheet" />
+
+<script src="../js/Follow.js"></script>
+<script src="../js/DateTime.js"></script>
+@*<script src="../js/angular-messages.min.js"></script>*@
+@*<script src="../js/timec.js"></script>*@
+
+@*<script src="../js/choice-date-referrer.js"></script>*@
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />*@
+
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#1">1</a></li>
+            <li><a href="#2">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <title>日历操作</title>
+
+
+    @*<script>
+              window.onload = function () {
+                  var cells = document.getElementById('monitor').getElementsByTagName('td');
+                  var clen = cells.length;
+                  var currentFirstDate;
+                  var formatDate = function (date) {
+
+                      var month = (date.getMonth() + 1) + '月';
+                      var day = date.getDate() + '日';
+                      var week =   ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][date.getDay()] ;
+
+                      return week + "<br>" + month + day;
+                  };
+
+
+                  var addDate = function (date, n) {
+                      date.setDate(date.getDate() + n);
+                      return date;
+                  };
+
+
+                  var setDate = function (date) {
+                      var week = date.getDay() - 1;
+                      date = addDate(date, week * -1);
+                      currentFirstDate = new Date(date);
+
+                      for (var i = 0; i < clen; i++) {
+                          cells[i].innerHTML = formatDate(i == 0 ? date : addDate(date, 1));   //星期一开始
+                          //cells[i].innerHTML = formatDate(i==0 ? addDate(date,-1) : addDate(date,1));   //星期天开始
+                      }
+                  };
+
+
+                  var chushi = 1;//初始周 第1周
+                  //使用each()方法进行循环
+                  $("button").each(function (index, element) {
+                      //这里的index就是当前对象下标，element就是当前对象（dom对象）
+                      $(element).click(function () {
+
+                          console.log($(this).text());
+                          var value = $(this).text();
+
+                          //这里的周跟当前周(上一次点击的或初始的)进行比较
+                          console.log(value - chushi);
+                          var result = value - chushi;
+                          if (result > 0) {
+                              setDate(addDate(currentFirstDate, 7 * result));
+                          }
+                          else if (result < 0) {
+                              result = Math.abs(result);
+                              setDate(addDate(currentFirstDate, -(7 * result)));
+                          }
+                          else if (result == 0) {
+                              setDate(addDate(currentFirstDate, 0));
+                          }
+
+                          chushi = $(this).text();
+
+
+                      })
+                  })
+
+
+
+                  setDate(new Date());
+              }
+          </script>
+        </head>
+        <body>
+
+
+          <button class="zhou">1</button>
+          <button class="zhou">2</button>
+          <button class="zhou">3</button>
+          <button class="zhou">4</button>
+          <button class="zhou">5</button>
+          <button class="zhou">6</button>
+          <button class="zhou">7</button>
+          <button class="zhou">8</button>
+          <button class="zhou">9</button>
+          <button class="zhou">10</button>
+
+
+          <table id="monitor">
+            <tr>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+              <td><a href="#"><a></td>
+            </tr>
+          </table>
+
+        <body>
+          <button id="last-week">上一周</button><button id="next-week">下一周</button>
+          <table id="monitor">
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>*@
+
+
+
+    <!-- uiView: main-view -->
+    <div id="index-box" ui-view="main-view" class="ng-scope"></div>
+    <!-- uiView: -->
+    <ui-view class="ng-scope">
+        <!-- 新医院主推模式二 时间段式 -->
+        <div ng-controller="choice-time-referrer" id="choice-time-referrer" class="ng-scope">
+            <input id="funcId" style="display: none" value="function03">
+            <div class="prompt_disabled_wrapper">
+                <!-- 新医院主推模式二 日期横向，直接显示时间段 -->
+                <div class="choice_time_cont_range ng-hide" ng-show="isConfigStyle==2">
+                    <!-- ngIf: timeinterval==1||timeinterval=='AM'||timeinterval==3||timeinterval=='AL' --><div class="choice_date_cont ng-scope" ng-if="timeinterval==1||timeinterval=='AM'||timeinterval==3||timeinterval=='AL'">
+                        <!-- ngIf: apartTimes&&apartTimes.length>0 -->
+                        <div class="choice_time_cont">
+                            <!-- ngRepeat: parttime in apartTimes -->
+                        </div>
+                    </div><!-- end ngIf: timeinterval==1||timeinterval=='AM'||timeinterval==3||timeinterval=='AL' -->
+                    <!-- ngIf: timeinterval==2||timeinterval=='PM'||timeinterval==3||timeinterval=='AL' -->
+                </div>
+
+                <!-- 模式三 日期横向，整点时间段伸缩 -->
+                <div class="choice_time_cont_shrink" ng-show="isConfigStyle==3" ng-class="{&quot;choice_date_noNumber&quot;:isNoNumber===true}">
+                    <!-- ngIf: (timeinterval==1||timeinterval=='AM'||timeinterval==3||timeinterval=='AL')&&atempInfo.length>0 --><div class="choice_date_cont ng-scope" ng-if="(timeinterval==1||timeinterval=='AM'||timeinterval==3||timeinterval=='AL')&amp;&amp;atempInfo.length>0">
+                        <dl class="choice_time_top">
+                            <dt>上午</dt>
+                            <!-- ngIf: registerfee!='0.0'&&registerfee!='999'&&registerfee!='999.0' -->
+
+                            <dd class="color-red ng-binding ng-scope" ng-if="registerfee!='0.0'&amp;&amp;registerfee!='999'&amp;&amp;registerfee!='999.0'">
+                                <!-- ngIf: outptyp!=null&&outptyp!='' -->
+
+                                <font ng-if="outptyp!=null&amp;&amp;outptyp!=''" class="ng-binding ng-scope">骨病科主任专家:</font>
+
+                                <!-- end ngIf: outptyp!=null&&outptyp!='' -->30.0元
+                            </dd><!-- end ngIf: registerfee!='0.0'&&registerfee!='999'&&registerfee!='999.0' -->
+                            <!-- ngIf: registerfee=='0.0' -->
+                            <!-- ngIf: registerfee=='999'||registerfee=='999.0' -->
+                        </dl>
+                        <div class="choice_time_cont">
+                            <!-- ngRepeat: atemp in atempInfo -->
+                            <dl class="choice_cont_box will_open_detail ng-scope" ng-repeat=" atemp in atempInfo" ng-class="{'had_full_order':atemp.regFlag!=1}">
+                                <dt class="font4">
+                                    <div class="date_control_box">
+                                        <div class="date_control">
+                                            <span class="choice_time_range ng-binding">
+                                                08:00<!-- ngIf: atemp.endTime!=null -->
+
+                                                <font ng-if="atemp.endTime!=null" class="ng-binding ng-scope">-09:00</font><!-- end ngIf: atemp.endTime!=null -->
+                                            </span>
+                                            <!-- ngIf: parttime.leaveNum!=null -->
+                                        </div>
+
+
+                                        <div class="btn_control font4">
+                                            <!-- ngIf: atemp.regFlag==1 --><!-- ngIf: ptemp.regFlag==1 --><font class="font4 color-blue ng-scope">挂号</font>
+
+                                            <script type="text/javascript">
+
+                    $(function () {
+                        $("span.t1").click(function () {//按钮绑定点击事件
+                            if (document.getElementsByClassName("bt1")[1].style.display == "none") {
+                                $("a.ui-button").hide();
+                                $("div.uib").hide();//先全部关掉
+                                $("a.bt1").show();//文本框显示出来  注：之前设置display:none的样式
+                                $("div.bt1").show();
+                            }
+                            else {
+                                $("a.bt1").hide();
+                                $("div.bt1").hide();
+
+                            }
+
+                        });
+                    });
+
+                    $(function () {
+                        $("span.t2").click(function () {//按钮绑定点击事件
+                            if (document.getElementsByClassName("bt2")[1].style.display == "none") {
+                                $("a.ui-button").hide();
+                                $("div.uib").hide();
+                                $("a.bt2").show();//文本框显示出来  注：之前设置display:none的样式
+                                $("div.bt2").show();
+                            }
+                            else {
+                                $("a.bt2").hide();
+                                $("div.bt2").hide();
+
+                            }
+
+                        });
+                    });
+                    $(function () {
+                        $("span.t3").click(function () {//按钮绑定点击事件
+                            if (document.getElementsByClassName("bt3")[1].style.display == "none") {
+                                $("a.ui-button").hide();
+                                $("div.uib").hide();
+                                $("a.bt3").show();//文本框显示出来  注：之前设置display:none的样式
+                                $("div.bt3").show();
+                            }
+                            else {
+                                $("a.bt3").hide();
+                                $("div.bt3").hide();
+
+                            }
+
+                        });
+                    });
+                    $(function () {
+                        $("span.t4").click(function () {//按钮绑定点击事件
+                            if (document.getElementsByClassName("bt4")[1].style.display == "none") {
+                                $("a.ui-button").hide();
+                                $("div.uib").hide();
+                                $("a.bt4").show();//文本框显示出来  注：之前设置display:none的样式
+                                $("div.bt4").show();
+                            }
+                            else {
+                                $("a.bt4").hide();
+                                $("div.bt4").hide();
+
+                            }
+
+                        });
+                    });
+
+
+                                            </script>
+                                            <!-- end ngIf: ptemp.regFlag==1 -->
+                                            <!-- end ngIf: atemp.regFlag==1 -->
+                                            <!-- ngIf: atemp.regFlag!=1 -->
+                                            <span class="t1"></span>
+
+
+
+                                            @*<div class="ui-input ui-time-input"><input type="minute" value="09:20" min="9:00" max="9:57" step="3"></div></div>
+                                                </div>*@
+
+
+
+
+
+                                </dt>
+
+                                <a href="javascript:" class="ui-button bt1 disabled" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">8:00-8:03</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">8:03-8:06</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">8:06-8:09</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:800px;" " role="button">8:09-8:12</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1000px;" " role="button">8:12-8:15</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1200px;" " role="button">8:15-8:18</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1400px;" " role="button">8:18-8:21</a>
+                                <div class="uib bt1" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:200px;" " role="button">8:21-8:24</a>
+
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">8:24-8:27</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">8:27-8:30</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">8:30-8:33</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">8:33-8:36</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">8:36-8:39</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">8:39-8:42</a>
+                                <div class="uib bt1" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">8:42-8:45</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">8:45-8:48</a>
+
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">8:48-8:51</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">8:51-8:54</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">8:54-8:57</a>
+                                <a href="javascript:" class="ui-button bt1" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">8:57-9:00</a>
+                                <a href="javascript:" class="ui-button bt1 disabled" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">9:00&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                <div class="uib bt1" style="display:none;"><br /></div>
+
+
+                                <dt class="font4">
+                                    <div class="date_control_box">
+                                        <div class="date_control">
+                                            <span class="choice_time_range ng-binding">
+                                                09:00<!-- ngIf: atemp.endTime!=null -->
+
+                                                <font ng-if="atemp.endTime!=null" class="ng-binding ng-scope">-10:00</font><!-- end ngIf: atemp.endTime!=null -->
+                                            </span>
+                                            <!-- ngIf: parttime.leaveNum!=null -->
+                                        </div>
+
+
+                                        <div class="btn_control font4">
+                                            <!-- ngIf: atemp.regFlag==1 --><!-- ngIf: ptemp.regFlag==1 --><font class="font4 color-blue ng-scope">挂号</font>
+
+
+                                            <!-- end ngIf: ptemp.regFlag==1 -->
+                                            <!-- end ngIf: atemp.regFlag==1 -->
+                                            <!-- ngIf: atemp.regFlag!=1 -->
+                                            <span class="t2"></span>
+                                        </div>
+
+
+                                </dt>
+                                <a href="javascript:" class="ui-button bt2 disabled" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">9:00-9:03</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:400px;" role="button" value="9:03-9:06" onclick="OnYuyue(this)">9:03-9:06</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:600px;" role="button" value="9:06-9:09" onclick="OnYuyue(this)">9:06-9:09</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:800px;" role="button" value="9:09-9:12" onclick="OnYuyue(this)">9:09-9:12</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button" value="9:12-9:15" onclick="OnYuyue(this)">9:12-9:15</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button" value="9:15-9:18" onclick="OnYuyue(this)">9:15-9:18</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button" value="9:18-9:21" onclick="OnYuyue(this)">9:18-9:21</a>
+                                <div class="uib bt2" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:200px;" role="button" value="9:21-9:24" onclick="OnYuyue(this)">9:21-9:24</a>
+
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:400px;" role="button" value="9:24-9:27" onclick="OnYuyue(this)">9:24-9:27</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:600px;" role="button" value="9:27-9:30" onclick="OnYuyue(this)">9:27-9:30</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:800px;" role="button" value="9:30-9:33" onclick="OnYuyue(this)">9:30-9:33</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button" value="9:33-9:36" onclick="OnYuyue(this)">9:33-9:36</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button" value="9:36-9:39" onclick="OnYuyue(this)">9:36-9:39</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button" value="9:39-9:42" onclick="OnYuyue(this)">9:39-9:42</a>
+                                <div class="uib bt2" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:200px;" role="button" value="9:42-9:45" onclick="OnYuyue(this)">9:42-9:45</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:400px;" role="button" value="9:45-9:48" onclick="OnYuyue(this)">9:45-9:48</a>
+
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:600px;" role="button" value="9:48-9:51" onclick="OnYuyue(this)">9:48-9:51</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:800px;" role="button" value="9:51-9:54" onclick="OnYuyue(this)">9:51-9:54</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button" value="9:54-9:57" onclick="OnYuyue(this)">9:54-9:57</a>
+                                <a href="javascript:" class="ui-button bt2" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button" value="9:57-10:00" onclick="OnYuyue(this)">9:57-10:00</a>
+                                <a href="javascript:" class="ui-button bt2 disabled" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">10:00&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                <div class="uib bt2" style="display:none;"><br /></div>
+
+
+                                <dt class="font4">
+                                    <div class="date_control_box">
+                                        <div class="date_control">
+                                            <span class="choice_time_range ng-binding">
+                                                10:00<!-- ngIf: atemp.endTime!=null -->
+
+                                                <font ng-if="atemp.endTime!=null" class="ng-binding ng-scope">-11:00</font><!-- end ngIf: atemp.endTime!=null -->
+                                            </span>
+                                            <!-- ngIf: parttime.leaveNum!=null -->
+                                        </div>
+
+
+                                        <div class="btn_control font4">
+                                            <!-- ngIf: atemp.regFlag==1 --><!-- ngIf: ptemp.regFlag==1 --><font class="font4 color-blue ng-scope">挂号</font>
+
+
+                                            <!-- end ngIf: ptemp.regFlag==1 -->
+                                            <!-- end ngIf: atemp.regFlag==1 -->
+                                            <!-- ngIf: atemp.regFlag!=1 -->
+                                            <span class="t3"></span>
+                                        </div>
+
+
+                                </dt>
+                                <a href="javascript:" class="ui-button bt3 disabled" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">10:00-10:03</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">10:03-10:06</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">10:06-10:09</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:800px;" " role="button">10:09-10:12</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1000px;" " role="button">10:12-10:15</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1200px;" " role="button">10:15-10:18</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1400px;" " role="button">10:18-10:21</a>
+                                <div class="uib bt3" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:200px;" " role="button">10:21-10:24</a>
+
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">10:24-10:27</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">10:27-10:30</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">10:30-10:33</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">10:33-10:36</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">10:36-10:39</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">10:39-10:42</a>
+                                <div class="uib bt3" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">10:42-10:45</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">10:45-10:48</a>
+
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">10:48-10:51</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">10:51-10:54</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">10:54-10:57</a>
+                                <a href="javascript:" class="ui-button bt3" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">10:57-11:00</a>
+                                <a href="javascript:" class="ui-button bt3 disabled" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">11:00&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                <div class="uib bt3" style="display:none;"><br /></div>
+
+
+
+                                <dt class="font4">
+                                    <div class="date_control_box">
+                                        <div class="date_control">
+                                            <span class="choice_time_range ng-binding">
+                                                11:00<!-- ngIf: atemp.endTime!=null -->
+
+                                                <font ng-if="atemp.endTime!=null" class="ng-binding ng-scope">-12:00</font><!-- end ngIf: atemp.endTime!=null -->
+                                            </span>
+                                            <!-- ngIf: parttime.leaveNum!=null -->
+                                        </div>
+
+
+                                        <div class="btn_control font4">
+                                            <!-- ngIf: atemp.regFlag==1 --><!-- ngIf: ptemp.regFlag==1 --><font class="font4 color-blue ng-scope">挂号</font>
+
+
+                                            <!-- end ngIf: ptemp.regFlag==1 -->
+                                            <!-- end ngIf: atemp.regFlag==1 -->
+                                            <!-- ngIf: atemp.regFlag!=1 -->
+                                            <span class="t4"></span>
+                                        </div>
+
+
+                                </dt>
+                                <a href="javascript:" class="ui-button bt4 disabled" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">10:00-11:03</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">11:03-11:06</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">11:06-11:09</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:800px;" " role="button">11:09-11:12</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1000px;" " role="button">11:12-11:15</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1200px;" " role="button">11:15-11:18</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1400px;" " role="button">11:18-11:21</a>
+                                <div class="uib bt4" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:200px;" " role="button">11:21-11:24</a>
+
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">11:24-11:27</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">11:27-11:30</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">11:30-11:33</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">11:33-11:36</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">11:36-11:39</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">11:39-11:42</a>
+                                <div class="uib bt4" style="display:none;"><br /></div>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:200px;" role="button">11:42-11:45</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:400px;" role="button">11:45-11:48</a>
+
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:600px;" role="button">11:48-11:51</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:800px;" role="button">11:51-11:54</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1000px;" role="button">11:54-11:57</a>
+                                <a href="javascript:" class="ui-button bt4" data-type="primary" style="display:none;position:absolute;left:1200px;" role="button">11:57-12:00</a>
+                                <a href="javascript:" class="ui-button bt4 disabled" data-type="primary" style="display:none;position:absolute;left:1400px;" role="button">12:00&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                <div class="uib bt4" style="display:none;"><br /></div>
+
+                                <script type="text/javascript">
+
+                    function OnYuyue(e)
+                    {
+                        var time = e.getAttribute('value');
+
+                        $.ajax({
+                            url: "/Yuyue/YBytime",//必填
+                            type: "post",
+                            data: { "time": time },
+                            dataType: "json",
+                            success: function (data) {//回调
+                                $("#ulList").html("");
+                                if (data != "") {
+                                    alert("查询成功");
+                                    //页面跳转
+
+                                    window.location.href = '../Yuyue/ensure';
+                                }
+
+                            }
+
+
+                        });
+                    }
+                                </script>
+
+
+
+
+
+
+
+
+
+
+
+
+                                </body>
+
+</html>
+
